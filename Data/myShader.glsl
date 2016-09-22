@@ -9,6 +9,8 @@ uniform float fractale;
 uniform float split;
 uniform float bloom;
 uniform float zoom;
+uniform float splat;
+uniform float sploot;
 
 out vec4 fragColor;
 
@@ -21,17 +23,17 @@ out vec4 fragColor;
 
 void main(){
 
-  vec3 c;
-	float l,z=t;
-	for(int i=0;i<30;i++) {
-		vec2 uv,p=gl_FragCoord.xy/r;
-		uv=p;
-		p-=0.5;
-		p.xy*=r.x/r.y;
-		z+=split;
-		l=length(p*bloom);
-		uv+=p*split/l*(sin(z)+darkness)*abs(sin(l*fractale-z*2.));
-		c[i]=zoom/length(abs(mod(uv,1.)-0.5));
+  vec3 c; //stores rgb values
+	float l,z=t; //animation values set to global time
+	for(int i=0;i<20;i++) {
+		vec2 uv,p=gl_FragCoord.xy/r; // xy positioning variables?
+		uv=p; //moves back to the center at the start of the loop?
+		p-=0.5; //sets center of vortex
+		p.x*=r.x/r.y; //aspect ratio set to screen size
+		z+=split; // colour intensity
+		l=length(p/bloom); //animation for music
+		uv+=p/l*(sin(z)+darkness)*abs(sin(l*fractale-z*splat)); //replaced all hard numbers changing operator changes nature of visuals
+		c[i]=zoom/length(abs(mod(uv,1.)-0.5)); //zoom animates the brightness of the center
 	}
-	fragColor=vec4(c/l,t/2);
+	fragColor=vec4(c/l*sploot,t); //sploot controls the overall brightness
 }
