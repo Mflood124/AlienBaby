@@ -32,7 +32,7 @@ void main(){
 		p.x*=r.x/r.y; //aspect ratio set to screen size
 		z+=split; // colour intensity
 		l=length(p/bloom); //animation for music
-		uv+=p/l*(sin(z)+darkness)*abs(sin(l*fractale-z*splat)); //replaced all hard numbers changing operator changes nature of visuals
+		uv+=p/l*(sin(z)+darkness)*abs(sin(l*fractale-z*splat)); //replaced all hard numbers
 		c[i]=zoom/length(abs(mod(uv,1.)-0.5)); //zoom animates the brightness of the center
 	}
 	fragColor=vec4(c/l*sploot,t); //sploot controls the overall brightness
