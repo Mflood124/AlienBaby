@@ -1,2 +1,0 @@
-# AlienBaby
-Processing music visualizer
